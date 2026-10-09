@@ -1,0 +1,199 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — nav.css
+ * 懸浮圓角條（tux.co 實測：居中 ~47vw / 高 64px / 圓角 12px /
+ * 深色半透明 + backdrop blur）+ 全屏菜單 overlay
+ * ============================================================ */
+
+/* ---- 懸浮條 ---- */
+#nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--nav-w), 720px);
+  min-width: var(--nav-w-min);
+  z-index: 100;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+  padding: 0 24px;
+  background: rgba(10, 10, 10, 0.6);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-nav);
+}
+
+/* 品牌字標 */
+.nav-brand {
+  font-size: 18px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.nav-brand .brand-accent {
+  color: var(--accent);
+}
+
+/* 右側鏈接 + MENU（.nav-links 內含鏈接與 MENU 按鈕） */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast) var(--ease-out),
+              color var(--t-fast) var(--ease-out);
+}
+
+.nav-links a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* MENU 按鈕：2×2 圓點陣 + 文字 */
+.nav-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.nav-menu-btn .dots {
+  display: grid;
+  grid-template-columns: repeat(2, 4px);
+  grid-template-rows: repeat(2, 4px);
+  gap: 3px;
+}
+
+.nav-menu-btn .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  transition: transform var(--t-base) var(--ease-out),
+              background-color var(--t-base) var(--ease-out);
+}
+
+.nav-menu-btn .menu-txt {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav-menu-btn:hover .dot {
+  background: var(--accent);
+}
+
+/* MENU 開啟態：圓點變 X */
+body.menu-open .nav-menu-btn .dot:nth-child(1) { transform: translate(3.5px, 3.5px); }
+body.menu-open .nav-menu-btn .dot:nth-child(2) { transform: translate(-3.5px, 3.5px); }
+body.menu-open .nav-menu-btn .dot:nth-child(3) { transform: translate(3.5px, -3.5px); }
+body.menu-open .nav-menu-btn .dot:nth-child(4) { transform: translate(-3.5px, -3.5px); }
+
+/* ---- 全屏菜單 overlay ---- */
+#menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 400ms var(--ease-out),
+              visibility 0s linear 400ms;
+}
+
+body.menu-open #menu-overlay {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 400ms var(--ease-out);
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  font-size: clamp(48px, 12vh, 140px);
+  color: var(--ink);
+  transition: color var(--t-fast) var(--ease-out),
+              transform var(--t-base) var(--ease-out);
+  transform: translateY(24px);
+  opacity: 0;
+}
+
+body.menu-open .menu-links a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+body.menu-open .menu-links a:nth-child(1) { transition-delay: 80ms; }
+body.menu-open .menu-links a:nth-child(2) { transition-delay: 140ms; }
+body.menu-open .menu-links a:nth-child(3) { transition-delay: 200ms; }
+body.menu-open .menu-links a:nth-child(4) { transition-delay: 260ms; }
+body.menu-open .menu-links a:nth-child(5) { transition-delay: 320ms; }
+
+.menu-links a:hover {
+  color: var(--accent);
+}
+
+.menu-links .menu-index {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.menu-foot {
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+/* 滾動時 nav 收緊（JS 加 .is-scrolled） */
+#nav.is-scrolled .nav-bar {
+  background: rgba(10, 10, 10, 0.85);
+}
+
+/* ---- 移動端 ---- */
+@media (max-width: 720px) {
+  #nav {
+    width: 92vw;
+    min-width: 0;
+  }
+
+  .nav-links a:not(:last-child) {
+    display: none;
+  }
+
+  .nav-bar {
+    padding: 0 16px;
+  }
+
+  .menu-links a {
+    font-size: clamp(40px, 10vh, 72px);
+  }
+}

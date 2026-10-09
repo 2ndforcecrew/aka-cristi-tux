@@ -1,0 +1,62 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — tokens.css
+ * 暗色電影風（tux.co 設計語言：黑白骨架 + 項目高飽和點綴）
+ * 只放 :root 變量 + @supports 降級，無其他規則。
+ * ============================================================ */
+
+:root {
+  /* ---- 色彩 ---- */
+  --bg: #0a0a0a;                 /* 深底 */
+  --bg-2: #111111;              /* 次級深底（交替色塊） */
+  --ink: #f5f5f4;               /* 近白文字 */
+  --muted: #8a8a8a;             /* 次級文字 */
+  --line: rgba(255, 255, 255, 0.14); /* 髮絲線 */
+  --accent: #d7ff00;            /* 默認點綴色（會被每項目的 data accent 覆蓋） */
+
+  /* ---- 字體棧（禁外部字體） ---- */
+  --font-d: "Archivo", "Arial Narrow", system-ui, -apple-system, sans-serif;  /* 顯示標題（窄體） */
+  --font-b: "Inter", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; /* 正文 */
+  --font-m: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; /* 標籤/等寬 */
+
+  /* ---- 顯示標題約定 ---- */
+  --disp-weight: 800;
+  --disp-stretch: 75%;          /* condensed */
+  --disp-leading: 0.9;
+  --disp-tracking: -0.01em;
+
+  /* ---- 間距 ---- */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 128px;
+
+  /* ---- 圓角語言（膠囊優先） ---- */
+  --r-pill: 999px;              /* 所有交互控件 */
+  --r-nav: 12px;                /* 懸浮 nav 條 */
+  --r-card: 12px;               /* 卡片 */
+  --r-thumb: 8px;               /* 縮略圖 */
+
+  /* ---- 動效 ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 150ms;
+  --t-base: 300ms;
+  --t-slow: 600ms;
+
+  /* ---- nav 尺寸 ---- */
+  --nav-w: 47vw;
+  --nav-w-min: 340px;
+  --nav-h: 64px;
+}
+
+/* font-stretch 降級：靠字重 + 更緊 tracking 補 */
+@supports not (font-stretch: 75%) {
+  :root {
+    --disp-stretch: 100%;
+    --disp-tracking: -0.03em;
+  }
+}

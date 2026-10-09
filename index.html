@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AKA.CRISTI — 暗色電影風作品集。攝影 × 平面設計 × 動態影像。">
+  <title>AKA.CRISTI — TUX Edition</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/showcase.css">
+  <link rel="stylesheet" href="css/work.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/reveal.css">
+</head>
+<body>
+
+  <!-- 懸浮導航條 -->
+  <nav id="nav" aria-label="主導航">
+    <div class="nav-bar">
+      <a class="nav-brand disp" href="#hero">AKA.CRISTI</a>
+      <div class="nav-links">
+        <a class="nav-link label" href="#work">Work</a>
+        <a class="nav-link label" href="#showcase">Photography</a>
+        <a class="nav-link label" href="#about">About</a>
+        <a class="nav-link label" href="#contact">Contact</a>
+        <button class="nav-menu-btn label" type="button" data-js="menu-btn" aria-expanded="false" aria-controls="menu-overlay">
+          <span class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+          <span class="menu-txt">Menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 全屏菜單 -->
+  <div id="menu-overlay" aria-hidden="true">
+    <div class="menu-inner">
+      <nav class="menu-links" aria-label="全屏菜單">
+        <a class="menu-link disp" href="#work" data-split>Work</a>
+        <a class="menu-link disp" href="#showcase" data-split>Photography</a>
+        <a class="menu-link disp" href="#about" data-split>About</a>
+        <a class="menu-link disp" href="#contact" data-split>Contact</a>
+      </nav>
+      <div class="menu-meta">
+        <p class="label">Shanghai, China</p>
+        <p class="label"><a href="mailto:hello@aka-cristi.com">hello@aka-cristi.com</a></p>
+        <p class="label">Instagram / Behance / X</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 首屏視頻 hero -->
+  <header id="hero">
+    <div class="hero-media">
+      <video muted playsinline autoplay loop preload="auto"
+             src="assets/video/aka-cristi-hero.mp4"
+             poster="assets/img/bw-01.jpg"></video>
+    </div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-bottom">
+      <h1 class="hero-title disp" data-split>AKA.CRISTI</h1>
+      <div class="hero-labels">
+        <p class="label">Shanghai, China</p>
+        <p class="label hero-scroll">Scroll <span class="scroll-line" aria-hidden="true"></span></p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 全屏項目展播（JS 渲染） -->
+    <section id="showcase" aria-label="精選項目展播">
+      <div id="showcase-panels"></div>
+    </section>
+
+    <!-- Work 三視圖 -->
+    <section id="work" aria-label="作品">
+      <div class="work-head">
+        <h2 class="work-title disp" data-split>Work</h2>
+        <p class="label">Selected Projects 2024—2026</p>
+      </div>
+      <div id="work-views" data-mode="list">
+        <div class="view-list" role="list"></div>
+        <div class="view-editorial"></div>
+        <div class="view-grid"></div>
+      </div>
+      <div class="view-switcher" role="group" aria-label="視圖切換">
+        <button type="button" class="label" data-view="list" aria-pressed="true">List View</button>
+        <button type="button" class="label" data-view="editorial" aria-pressed="false">Editorial View</button>
+        <button type="button" class="label" data-view="grid" aria-pressed="false">Grid View</button>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-label="關於">
+      <h2 class="section-title disp" data-split>About</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>AKA.CRISTI 不是傳統攝影師作品集。它是暗房裡的時尚雜誌、設計檔案館、單一品牌畫廊——冷、精準、銳利。</p>
+          <p>作品在兩種媒介間游走：鏡頭追逐光線與姿態，紙面把情緒重構成品牌可以留下的視覺語言。快門捕捉，紙面沉澱。從按下快門到最終成品，每一步都在同一隻眼睛的控制之下——因為攝影師和設計師是同一個人。</p>
+        </div>
+        <figure class="about-fig">
+          <img src="assets/img/bw-02.jpg" alt="AKA.CRISTI 肖像" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" aria-label="聯繫">
+      <h2 class="section-title disp" data-split>Let&rsquo;s Talk</h2>
+      <p class="contact-mail"><a href="mailto:hello@aka-cristi.com">hello@aka-cristi.com</a></p>
+      <div class="contact-social">
+        <a class="pill label" href="#" rel="noopener">Instagram</a>
+        <a class="pill label" href="#" rel="noopener">Behance</a>
+        <a class="pill label" href="#" rel="noopener">X</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-brand disp" aria-hidden="true">AKA.CRISTI</p>
+    <div class="footer-meta">
+      <p class="label">&copy; 2026 AKA.CRISTI</p>
+      <p class="label">Shanghai</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/showcase.js"></script>
+  <script src="js/work.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

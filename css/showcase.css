@@ -1,0 +1,138 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — showcase.css
+ * 全屏項目展播：每項目獨佔一屏，sticky pinned，
+ * 巨型描邊背景字從媒體卡片四周透出，視差由 JS 驅動。
+ * ============================================================ */
+
+#showcase {
+  background: #000;
+}
+
+/* ---- panel：每屏 ---- */
+.panel {
+  min-height: 100vh;
+  position: relative;
+}
+
+.panel-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ---- 巨型背景字（描邊，從圖片後透出） ---- */
+.panel-word {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  line-height: var(--disp-leading);
+  letter-spacing: var(--disp-tracking);
+  font-size: 22vw;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ---- 媒體卡片（四周留白讓背景字透出） ---- */
+.panel-media {
+  position: absolute;
+  inset: 4vh 4vw;
+  z-index: 2;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.panel-media video,
+.panel-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.15);
+  will-change: transform;
+}
+
+/* ---- 底部信息行 ---- */
+.panel-info {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) 6vw;
+  color: #fff;
+}
+
+.panel-info .p-title {
+  font-family: var(--font-b);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.panel-info .p-meta {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ---- accent 細線（--accent 由 JS 設在 .panel 上） ---- */
+.panel-accent {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 6vw;
+  right: 6vw;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ---- 移動端 ---- */
+@media (max-width: 720px) {
+  .panel-word {
+    font-size: 30vw;
+  }
+  .panel-media {
+    inset: 6vh 4vw;
+    border-radius: 16px;
+  }
+  .panel-info {
+    padding: var(--space-3) 6vw;
+  }
+  .panel-info .p-title {
+    font-size: 15px;
+  }
+}
+
+/* ---- reduced motion：交給 base.css 全局處理，sticky 照常 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .panel-media video,
+  .panel-media img,
+  .panel-word {
+    transform: none;
+    will-change: auto;
+  }
+}

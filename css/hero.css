@@ -1,0 +1,107 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — hero.css
+ * 全屏沉浸式視頻 hero（低照度電影感）+ 底部巨型全出血標題
+ * + 底部細分隔線標籤行
+ * ============================================================ */
+
+#hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh; /* 移動端瀏覽器 chrome 兼容 */
+  overflow: hidden;
+  background: #000;
+}
+
+/* 背景視頻 */
+.hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.72) contrast(1.05);
+}
+
+/* 暗角（電影感 vignette，無外部資源） */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.75);
+}
+
+/* 巨型標題：貼底部，全出血 */
+.hero-title {
+  position: absolute;
+  bottom: 8vh;
+  left: 0;
+  right: 0;
+  font-size: clamp(80px, 18vw, 280px);
+  color: #fff;
+  white-space: nowrap;
+  overflow: visible;
+  /* 允許略出屏的氣勢 */
+  margin-left: -0.04em;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-title .title-accent {
+  color: var(--accent);
+}
+
+/* 底部標籤行：細分隔線 + mono */
+.hero-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.hero-labels .hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+/* 滾動指示小箭頭（CSS 繪製） */
+.hero-scroll .scroll-line {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  animation: hint-bob 1.8s var(--ease-inout) infinite;
+}
+
+@keyframes hint-bob {
+  0%, 100% { transform: rotate(45deg) translate(0, -2px); }
+  50% { transform: rotate(45deg) translate(2px, 2px); }
+}
+
+/* 移動端 */
+@media (max-width: 720px) {
+  .hero-title {
+    font-size: clamp(56px, 22vw, 120px);
+    bottom: 10vh;
+  }
+
+  .hero-labels {
+    padding: 12px 16px;
+    font-size: 10px;
+  }
+}

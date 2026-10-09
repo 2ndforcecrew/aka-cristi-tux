@@ -1,0 +1,281 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — work.css
+ * 三視圖（list / editorial / grid）+ 底部固定膠囊切換器。
+ * 顯隱全用 #work-views[data-mode] 屬性選擇器，JS 只改屬性。
+ * ============================================================ */
+
+#work {
+  background: var(--bg);
+  padding: var(--space-8) 0 calc(var(--space-8) + 80px);
+  position: relative;
+}
+
+.work-head {
+  padding: 0 8vw var(--space-6);
+}
+
+.work-title {
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  line-height: var(--disp-leading);
+  letter-spacing: var(--disp-tracking);
+  font-size: clamp(64px, 12vw, 200px);
+  margin: 0 0 var(--space-3);
+  color: var(--ink);
+}
+
+.work-sub {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---- 視圖顯隱 ---- */
+#work-views .view-list,
+#work-views .view-editorial,
+#work-views .view-grid {
+  display: none;
+}
+
+#work-views[data-mode="list"] .view-list { display: block; }
+#work-views[data-mode="editorial"] .view-editorial { display: flex; }
+#work-views[data-mode="grid"] .view-grid { display: grid; }
+
+/* ---- 底部固定膠囊切換器 ---- */
+.view-switcher {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(20, 20, 20, 0.7);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+
+.view-switcher button {
+  border: 0;
+  background: transparent;
+  border-radius: var(--r-pill);
+  padding: 10px 20px;
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out),
+              color var(--t-base) var(--ease-out);
+}
+
+.view-switcher button:hover {
+  color: var(--ink);
+}
+
+.view-switcher button.is-active {
+  background: #fff;
+  color: #000;
+}
+
+/* ============ LIST VIEW ============ */
+.view-list {
+  border-top: 1px solid var(--line);
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3) 8vw;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color var(--t-base) var(--ease-out),
+              color var(--t-base) var(--ease-out);
+  cursor: pointer;
+}
+
+.row-title {
+  font-family: var(--font-b);
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.row-tags {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.row-thumbs {
+  display: flex;
+  gap: 8px;
+  max-height: 120px;
+  overflow: hidden;
+  transition: max-height var(--t-slow) var(--ease-out);
+}
+
+.row-thumbs img {
+  width: 120px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--r-thumb);
+  flex: none;
+}
+
+/* hover：反白 + 縮略圖串展開 */
+.work-row:hover {
+  background: #fff;
+  color: #000;
+}
+
+.work-row:hover .row-tags {
+  color: #555;
+}
+
+.work-row:hover .row-thumbs {
+  max-height: 320px;
+  flex-wrap: wrap;
+}
+
+/* ============ EDITORIAL VIEW ============ */
+.view-editorial {
+  padding: 0 8vw;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.ed-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.ed-block:nth-child(even) .ed-media {
+  order: 2;
+}
+
+.ed-media img,
+.ed-media video {
+  display: block;
+  width: 100%;
+  max-width: 38vw;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-card);
+}
+
+.ed-block:nth-child(even) .ed-media {
+  justify-self: end;
+}
+
+.ed-title {
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  line-height: var(--disp-leading);
+  font-size: clamp(32px, 5vw, 72px);
+  margin: 0 0 var(--space-2);
+  color: var(--ink);
+}
+
+.ed-text {
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 var(--space-3);
+  max-width: 44ch;
+}
+
+.ed-tags {
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+/* ============ GRID VIEW ============ */
+.view-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  padding: 0 8vw;
+}
+
+.grid-cell {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-thumb);
+}
+
+.grid-cell img,
+.grid-cell video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.grid-cell:hover img,
+.grid-cell:hover video {
+  transform: scale(1.04);
+}
+
+/* ---- 移動端 ---- */
+@media (max-width: 720px) {
+  .work-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-3) 6vw;
+  }
+  .row-thumbs img {
+    width: 88px;
+  }
+  .ed-block {
+    grid-template-columns: 1fr;
+  }
+  .ed-block:nth-child(even) .ed-media {
+    order: 0;
+  }
+  .ed-media img,
+  .ed-media video {
+    max-width: none;
+  }
+  .view-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 6vw;
+  }
+  .view-switcher {
+    bottom: 16px;
+  }
+  .view-switcher button {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}

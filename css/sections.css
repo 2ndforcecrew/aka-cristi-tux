@@ -1,0 +1,158 @@
+/* ============================================================
+ * AKA.CRISTI tux 版 — sections.css
+ * about / contact / footer：簡約暗色。
+ * ============================================================ */
+
+/* ============ ABOUT ============ */
+#about {
+  background: var(--bg);
+  padding: var(--space-8) 8vw;
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  line-height: var(--disp-leading);
+  letter-spacing: var(--disp-tracking);
+  font-size: clamp(64px, 12vw, 200px);
+  margin: 0 0 var(--space-6);
+  color: var(--ink);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.about-text p {
+  font-family: var(--font-b);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0 0 var(--space-3);
+  max-width: 52ch;
+}
+
+.about-text p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.about-fig img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--r-card);
+  filter: grayscale(0.6) contrast(1.05);
+}
+
+/* ============ CONTACT ============ */
+#contact {
+  background: var(--bg-2);
+  padding: var(--space-8) 8vw;
+  border-top: 1px solid var(--line);
+}
+
+.contact-mail {
+  display: inline-block;
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  font-size: clamp(28px, 5vw, 72px);
+  color: var(--ink);
+  text-decoration: none;
+  margin: 0 0 var(--space-5);
+  border-bottom: 2px solid var(--accent);
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.contact-mail:hover {
+  color: var(--accent);
+}
+
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-social a.pill {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color var(--t-base) var(--ease-out),
+              color var(--t-base) var(--ease-out),
+              border-color var(--t-base) var(--ease-out);
+}
+
+.contact-social a.pill:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+}
+
+/* ============ FOOTER ============ */
+footer {
+  background: #000;
+  border-top: 1px solid var(--line);
+  padding: var(--space-6) 8vw var(--space-4);
+  overflow: hidden;
+}
+
+.footer-brand {
+  font-family: var(--font-d);
+  font-weight: var(--disp-weight);
+  font-stretch: var(--disp-stretch);
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: var(--disp-tracking);
+  font-size: clamp(80px, 17vw, 260px);
+  white-space: nowrap;
+  color: var(--ink);
+  margin: 0 0 var(--space-5);
+  user-select: none;
+}
+
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-family: var(--font-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---- 移動端 ---- */
+@media (max-width: 720px) {
+  #about,
+  #contact {
+    padding: var(--space-6) 6vw;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    padding: var(--space-5) 6vw var(--space-4);
+  }
+}
